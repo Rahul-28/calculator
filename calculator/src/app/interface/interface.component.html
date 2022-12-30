@@ -1,12 +1,15 @@
 <div class="display">
     <div id="title">CALCULATOR</div>
     <div class="outline">
-        <div class="screen"></div>  
+        <div class="screen">
+            <div type="text">{{input}}</div>
+            <div type="text">{{result}}</div>
+        </div>  
         <div class="buttons">
             <table>
                 <tr>
-                    <td><button mat-raised-button color="primary">cls</button></td>
-                    <td><button mat-raised-button>del</button></td>
+                    <td><button mat-raised-button color="primary" (click)="clearAll()">C</button></td>
+                    <td><button mat-raised-button (click)="clear()">del</button></td>
                     <td><button mat-raised-button>%</button></td>
                     <td><button mat-raised-button>÷</button></td>
                 </tr>

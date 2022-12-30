@@ -7,4 +7,18 @@ import { Component } from '@angular/core';
 })
 export class InterfaceComponent {
 
+  input: string = 'input';
+  result: string = 'result';
+
+  clear() {
+    if(this.input != "") {
+      this.input = this.input.substring(0, this.input.length-1);
+    }
+  }
+
+  clearAll() {
+    this.input = '';
+    this.result = '';
+  }
+
 }
