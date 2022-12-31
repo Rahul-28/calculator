@@ -7,11 +7,15 @@ import { Component } from '@angular/core';
 })
 export class InterfaceComponent {
 
-  input: string = 'input';
+  input: string = '';
   result: string = 'result';
+  operand1?: number ;
+  operand2?: number ;
+  operator:string[] = ['+', '-', 'x', '÷', '%', '.'];
+  
 
   clear() {
-    if(this.input != "") {
+    if(this.input != '') {
       this.input = this.input.substring(0, this.input.length-1);
     }
   }
@@ -19,6 +23,27 @@ export class InterfaceComponent {
   clearAll() {
     this.input = '';
     this.result = '';
+  }
+
+  getOperand(digit: number) {
+    this.input =this.input + digit;
+  }
+
+  getOperator(sign: string) {
+    this.input =this.input + sign;
+  }
+
+  calc() {
+    
+  }
+
+  expressionEval() {
+    this.operator.forEach(symbol => {
+      if(this.input[0] == symbol) {
+        alert('cannot evaluate expression starting with "'+symbol+'"');
+        this.input = '';
+      }
+    });
   }
 
 }

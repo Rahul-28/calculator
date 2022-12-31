@@ -2,40 +2,40 @@
     <div id="title">CALCULATOR</div>
     <div class="outline">
         <div class="screen">
-            <div type="text">{{input}}</div>
-            <div type="text">{{result}}</div>
+            <div type="text" id="input_box">{{input}}</div>
+            <div type="text" id="input_box">{{result}}</div>
         </div>  
         <div class="buttons">
             <table>
                 <tr>
                     <td><button mat-raised-button color="primary" (click)="clearAll()">C</button></td>
-                    <td><button mat-raised-button (click)="clear()">del</button></td>
-                    <td><button mat-raised-button>%</button></td>
-                    <td><button mat-raised-button>÷</button></td>
+                    <td><button mat-raised-button (click)="clear()" color="warn">del</button></td>
+                    <td><button mat-raised-button (click)="getOperator('%')">%</button></td>
+                    <td><button mat-raised-button (click)="getOperator('÷')">÷</button></td>
+                </tr>
+                <tr> 
+                    <td><button mat-raised-button (click)="getOperand(7)">7</button></td>
+                    <td><button mat-raised-button (click)="getOperand(8)">8</button></td>
+                    <td><button mat-raised-button (click)="getOperand(9)">9</button></td>
+                    <td><button mat-raised-button (click)="getOperator('x')">x</button></td>
                 </tr>
                 <tr>
-                    <td><button mat-raised-button>7</button></td>
-                    <td><button mat-raised-button>8</button></td>
-                    <td><button mat-raised-button>9</button></td>
-                    <td><button mat-raised-button>×</button></td>
+                    <td><button mat-raised-button (click)="getOperand(4)">4</button></td>
+                    <td><button mat-raised-button (click)="getOperand(5)">5</button></td>
+                    <td><button mat-raised-button (click)="getOperand(6)">6</button></td>
+                    <td><button mat-raised-button (click)="getOperator('-')">-</button></td>
                 </tr>
                 <tr>
-                    <td><button mat-raised-button>4</button></td>
-                    <td><button mat-raised-button>5</button></td>
-                    <td><button mat-raised-button>6</button></td>
-                    <td><button mat-raised-button>-</button></td>
+                    <td><button mat-raised-button (click)="getOperand(1)">1</button></td>
+                    <td><button mat-raised-button (click)="getOperand(2)">2</button></td>
+                    <td><button mat-raised-button (click)="getOperand(3)">3</button></td>
+                    <td><button mat-raised-button (click)="getOperator('+')">+</button></td>
                 </tr>
                 <tr>
-                    <td><button mat-raised-button>1</button></td>
-                    <td><button mat-raised-button>2</button></td>
-                    <td><button mat-raised-button>3</button></td>
-                    <td><button mat-raised-button>+</button></td>
-                </tr>
-                <tr>
-                    <td><button mat-raised-button></button></td>
-                    <td><button mat-raised-button>0</button></td>
-                    <td><button mat-raised-button>.</button></td>
-                    <td><button mat-raised-button color="primary">=</button></td>
+                    <td><button mat-raised-button >❤</button></td>
+                    <td><button mat-raised-button (click)="getOperand(0)">0</button></td>
+                    <td><button mat-raised-button (click)="getOperator('.')">.</button></td>
+                    <td><button mat-raised-button color="primary" (click)="expressionEval()">=</button></td>
                 </tr>
             </table>
         </div>      
