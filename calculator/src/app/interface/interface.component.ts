@@ -8,10 +8,12 @@ import { Component } from '@angular/core';
 export class InterfaceComponent {
 
   input: string = '';
-  result: string = 'result';
+  result?: number ;
   operand1?: number ;
   operand2?: number ;
-  operator:string[] = ['+', '-', 'x', '÷', '%', '.'];
+  operatorflag: number = 0;
+  operator: string[] = ['+', '-', 'x', '÷', '%'];
+  decimal: string = '.';
   
 
   clear() {
@@ -22,7 +24,7 @@ export class InterfaceComponent {
 
   clearAll() {
     this.input = '';
-    this.result = '';
+    this.operatorflag = 0;
   }
 
   getOperand(digit: number) {
@@ -31,19 +33,35 @@ export class InterfaceComponent {
 
   getOperator(sign: string) {
     this.input =this.input + sign;
+    if(!(sign == '.')) {
+      this.operatorflag++;
+    }
+    this.operand1 = Number(this.input.substring(0,this.input.length-1));
   }
 
-  calc() {
-    
+  calculation() {
+    this.expressionEval();
+    this.operatorflag = 0;
   }
 
   expressionEval() {
+    //input cannot start with symbols or '.'
     this.operator.forEach(symbol => {
       if(this.input[0] == symbol) {
         alert('cannot evaluate expression starting with "'+symbol+'"');
         this.input = '';
       }
     });
+
+    if(this.input[0] == this.decimal) {
+      alert('cannot evaluate expression starting with "'+this.decimal+'"');
+      this.input = '';
+    }
+
+    //input cannot contain mor than one operator or '.'
+    if(this.operatorflag >=2) {
+      alert('cannot contain more than one operator or decimal points');
+    }
   }
 
 }
