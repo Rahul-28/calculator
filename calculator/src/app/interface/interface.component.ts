@@ -8,13 +8,13 @@ import { Component } from '@angular/core';
 export class InterfaceComponent {
 
   input: string = '';
-  result?: number ;
-  operand1?: number ;
-  operand2?: number ;
+  result: number = 0;
+  operand1: number = 0;
+  operand2: number = 0;
   operatorflag: number = 0;
   operator: string[] = ['+', '-', 'x', '÷', '%'];
   decimal: string = '.';
-  
+  operatorIndex: number = 0;
 
   clear() {
     if(this.input != '') {
@@ -24,6 +24,7 @@ export class InterfaceComponent {
 
   clearAll() {
     this.input = '';
+    this.result = 
     this.operatorflag = 0;
   }
 
@@ -37,13 +38,31 @@ export class InterfaceComponent {
       this.operatorflag++;
     }
     this.operand1 = Number(this.input.substring(0,this.input.length-1));
+    this.operatorIndex = this.input.indexOf(sign);
   }
 
   calculation() {
     this.expressionEval();
     this.operatorflag = 0;
+    if(this.input.includes('+')) {
+      this.result = Number(this.operand1 + this.operand2);
+    }
+    else if(this.input.includes('-')) {
+      this.result = Number(this.operand1 - this.operand2);
+    }
+    else if(this.input.includes('x')) {
+      this.result = Number(this.operand1 * this.operand2);
+    }
+    else if(this.input.includes('÷')) {
+      this.result = Number(this.operand1 / this.operand2);
+    }
+    else if(this.input.includes('%')) {
+      this.result = Number(this.operand1 % this.operand2);
+    }
+    this.input = this.result.toString();
   }
 
+  //to check logical condition and errors brfore calculating
   expressionEval() {
     //input cannot start with symbols or '.'
     this.operator.forEach(symbol => {
@@ -58,10 +77,13 @@ export class InterfaceComponent {
       this.input = '';
     }
 
-    //input cannot contain mor than one operator or '.'
+    //input cannot contain mor than one operator
     if(this.operatorflag >=2) {
-      alert('cannot contain more than one operator or decimal points');
+      alert('cannot contain more than one operator');
     }
+
+    this.operand2 = Number(this.input.substring(this.operatorIndex+1, this.input.length));
+
   }
 
 }
